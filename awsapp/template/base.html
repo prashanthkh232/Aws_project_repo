@@ -100,8 +100,13 @@
 <body>
     <div class="bg-white">
     {% block navbar %}
-    <img src="{% static '/sofwareone.png' %}" height="70" width="150" alt="logo">
-    <a href="{% url 'login' %}">Login</a>
+	<div class="d-flex justify-content-between px-4">
+		<img src="{% static '/sofwareone.png' %}" height="70" width="150" alt="logo">
+		<div class="pt-4">
+			<a href="{% url 'register' %}" class="ml-2">SignUp </a>
+    		<a href="{% url 'login' %}">Signin</a>
+		</div>
+	</div>
     {% endblock %}
     </div>
     {% block body %}

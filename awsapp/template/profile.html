@@ -4,9 +4,13 @@
     {% block style_n_title %}<title>My account</title>{% endblock %}
 
 	{% block navbar %}
+	  <div class="d-flex justify-content-between px-4">
     <img src="{% static '/sofwareone.png' %}" height="70" width="150" alt="logo">
-    <span class="bg-success p-2 rounded">{{user}}</span>
-    <a href="{% url 'logout' %}">Logout</a>
+      <div class="pt-4">
+        <span class="bg-success p-2 rounded">{{user}}</span>
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
     {% endblock %}
 
 
