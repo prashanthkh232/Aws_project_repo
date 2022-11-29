@@ -10,4 +10,5 @@ urlpatterns = [
     path('myaccount/',views.profile,name='profile'),
     path('logout/',views.log_out,name='logout'),
     path('regdisp/register/verifyotp/',views.verifyotp,name='verifyotp'),
+    path('regdisp/register/verifyotp/userRegister/',views.userRegister,name='userRegister'),
 ]
