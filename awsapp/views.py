@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .emails import otp_send
+from django.contrib.auth.models import User
 
 # otp_send('yogishaeveeru@gmail.com')
 
@@ -14,7 +15,8 @@ def index(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
-        user=authenticate(request,username=username,password=password)
+        user=authenticate(username=username,password=password)
+        print(user)
         if user is not None:
             login(request,user)
             return redirect('profile')
@@ -58,24 +60,34 @@ def regist(request):
     global firstname,lastname,email,otp
     # form=CreateUserForm()
     if request.method=='POST':
-        print('dftgyuhij')
         firstname=request.POST.get('first_name')
         lastname=request.POST.get('last_name')
         email=request.POST.get('email')
         otp=otp_send(email)
-        print(otp,email)
-        return render(request,'next.html',{email:email})
+        return render(request,'next.html',{'email':email})
     else:
         return redirect('regdisp')
 
 
 def verifyotp(request):
-    print(otp)
     userotp=request.POST.get('otpverif')
-    print(userotp ,type(userotp),otp,type(otp))
     if int(userotp)==otp:
-        print('srdeftyghuj')
         return render(request,'password.html',{})
     else:
         messages.info(request,'Invalid otp')
         return render(request,'next.html',{})
+
+def userRegister(request):
+    if request.method=='POST':
+        password1=request.POST.get('password1')
+        password2=request.POST.get('password2')
+        if password1==password2:
+            user=User(first_name=firstname,last_name=lastname,email=email,password=password1,username=email,is_staff=True)
+            user.save()
+            messages.success(request,'Registration successful')
+            return redirect('login')
+        else:
+            messages.info(request,'Password didnot match')
+            return render(request,'password.html',{})
+
+
