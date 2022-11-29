@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .emails import otp_send
 from django.contrib.auth.models import User
 
-# otp_send('yogishaeveeru@gmail.com')
 
 
 # Create your views here.
