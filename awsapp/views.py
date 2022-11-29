@@ -24,21 +24,7 @@ def index(request):
             messages.info(request,'Username or Password invalid')   
     return render(request,'login.html',{})
 
-# def regist(request):
-#     form=CreateUserForm()
-#     if request.method=='POST':
-#         form=CreateUserForm(request.POST)
-#         if form.is_valid():
-#             email=request.POST.get('email')
-#             d=email.split('@')
-#             if d[1]=='gmail.com':
-#                 form.save()
-#                 messages.success(request,'Registration successful')
-#                 return redirect('login')
-#             else:
-#                 messages.info(request,'Use company Email')
-#     context={'form':form}
-#     return render(request,'registration.html',context)
+
 def home(request):
     return render(request,'base.html')
 
@@ -49,7 +35,6 @@ def profile(request):
 def log_out(request):
     logout(request)
     return redirect('login')
-# otp_send('yogishaeveeru@gmail.com')
 firstname=''
 lastname=''
 email=''
